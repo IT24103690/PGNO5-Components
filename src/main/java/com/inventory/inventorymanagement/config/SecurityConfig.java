@@ -1,0 +1,40 @@
+package com.inventory.inventorymanagement.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(auth -> auth
+                        // Allow public access to all endpoints for development
+                        .anyRequest().permitAll()
+                )
+                .formLogin(form -> form
+                        .loginPage("/users/login")
+                        .permitAll()
+                        .defaultSuccessUrl("/users", true)
+                )
+                .logout(logout -> logout
+                        .permitAll()
+                        .logoutSuccessUrl("/users/login")
+                )
+                // Disable CSRF for simplicity (already disabled in your config)
+                .csrf(csrf -> csrf.disable());
+
+        return http.build();
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}

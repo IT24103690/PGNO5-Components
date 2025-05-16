@@ -1,0 +1,190 @@
+body {
+    background-color: #DBEAFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.navBar {
+    width: 1300px;
+    height: 50px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.Username {
+    background-color: #1C32A2;
+    color: white;
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 25px;
+    padding-top: 5px;
+    border-radius: 15px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    width: 800px;
+    padding-top: 8px;
+}
+
+button {
+    background-color: #F4EBE5;
+    height: 40px;
+    padding: 5px;
+    font-size: 17px;
+    min-width: 80px;
+    border-radius: 20px;
+    border: solid #F4EBE5 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+button:hover {
+    border: solid 2px #A46F4B;
+}
+
+.activeButton {
+    border: solid #A46F4B 2px;
+    background-color: #FFFDFC;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 90px;
+}
+
+.infoBox {
+    border: solid 4px;
+    border-radius: 40px;
+    width: 700px;
+    padding-left: 105px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    background-color: #FFFDFC;
+    box-sizing: border-box;
+    min-height: 500px;
+}
+
+h1 {
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+.cardCatalog {
+    height: 400px;
+    width: 600px;
+    overflow-y: auto;
+    margin-top: 20px;
+}
+
+.userCard {
+    height: 70px;
+    width: 540px;
+    background-color: #FFFDFC;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid blue 2px;
+    padding-right: 20px;
+}
+
+.userCard p {
+    font-size: 20px;
+    margin: 5px;
+}
+
+.userCard button {
+    margin: 5px;
+    margin-top: 0;
+}
+
+.editBtn, .deleteBtn, .cancelBtn {
+    width: 80px;
+    margin-right: 10px;
+}
+
+.userEditCard {
+    height: 300px;
+    width: 540px;
+    background-color: #FFFDFC;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+    display: none;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid blue 2px;
+    padding-right: 20px;
+    font-size: 20px;
+    transition-duration: 0.3s;
+    box-sizing: border-box;
+}
+
+.userEditCardInputs {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.userEditCard input {
+    border: solid 1px black;
+    margin: 0;
+    margin-bottom: 10px;
+    height: 30px;
+    padding-left: 15px;
+    width: 300px;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+.userEditCard .radio {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.userEditCard .radio p {
+    margin-bottom: 5px;
+}
+
+.userEditCard .radio div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.userEditCard input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.5);
+}
+
+.userEditCard button[type="submit"] {
+    width: 150px;
+    align-self: center;
+    margin-top: 10px;
+}
+
+.userEditCard .cancelBtn {
+    width: 100px;
+    align-self: center;
+    margin-top: 10px;
+}

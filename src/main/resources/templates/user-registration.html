@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<div class="navBar">
+    <div class="Username">Peter Kawinsky</div>
+    <div class="nav">
+        <button class="activeButton">Users</button>
+        <button>Products</button>
+        <button>Stocks</button>
+        <button>Customers</button>
+        <button>Orders</button>
+        <button>Requests</button>
+        <button>Log out</button>
+    </div>
+</div>
+<div class="content">
+    <div class="registerBox">
+        <h1>Register a new user</h1>
+        <form th:action="@{/users/register}" th:object="${user}" method="post" class="form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" name="name" required>
+            <label for="id">ID:</label>
+            <input type="text" id="id" th:field="*{id}" name="id" required>
+            <div class="radio">
+                <p>Role:</p>
+                <div>
+                    <input type="radio" id="adminRole" th:field="*{role}" th:value="admin" name="role" required>
+                    <label for="adminRole">Admin</label>
+                </div>
+                <div>
+                    <input type="radio" id="staffRole" th:field="*{role}" th:value="staff" name="role">
+                    <label for="staffRole">Staff</label>
+                </div>
+                <div>
+                    <input type="radio" id="supplierRole" th:field="*{role}" th:value="supplier" name="role">
+                    <label for="supplierRole">Supplier</label>
+                </div>
+            </div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" th:field="*{password}" name="password" required>
+            <button type="submit" id="createUserBtn">Create user</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
