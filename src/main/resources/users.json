@@ -1,0 +1,33 @@
+[ {
+  "id" : "1",
+  "name" : "Tathika",
+  "role" : "admin",
+  "password" : "11111",
+  "adminLevel" : "standard",
+  "companyName" : null,
+  "department" : null
+}, {
+  "id" : "1",
+  "name" : "Tathika",
+  "role" : "admin",
+  "password" : "11111",
+  "adminLevel" : "standard",
+  "companyName" : null,
+  "department" : null
+}, {
+  "id" : "1",
+  "name" : "Tathika",
+  "role" : "admin",
+  "password" : "11111",
+  "adminLevel" : "standard",
+  "companyName" : null,
+  "department" : null
+}, {
+  "id" : "1",
+  "name" : "Tathika",
+  "role" : "admin",
+  "password" : "11111",
+  "adminLevel" : "standard",
+  "companyName" : null,
+  "department" : null
+} ]

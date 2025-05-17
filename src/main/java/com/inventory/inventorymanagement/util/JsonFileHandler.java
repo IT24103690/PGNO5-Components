@@ -16,7 +16,6 @@ public class JsonFileHandler {
     public JsonFileHandler() {
         this.objectMapper = new ObjectMapper();
         this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-        // Configure for polymorphic deserialization with @JsonTypeInfo
         this.objectMapper.configure(com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
@@ -44,7 +43,12 @@ public class JsonFileHandler {
         System.out.println("Writing JSON to: " + file.getAbsolutePath() + " with data: " + data);
         try {
             Files.createDirectories(file.getParentFile().toPath());
-            objectMapper.writeValue(file, data);
+            if (data == null) {
+                System.out.println("Data is null, writing empty list to JSON.");
+                objectMapper.writeValue(file, new ArrayList<>());
+            } else {
+                objectMapper.writeValue(file, data);
+            }
             System.out.println("Successfully wrote " + (data != null ? data.size() : 0) + " items to JSON.");
         } catch (IOException e) {
             System.err.println("Error writing JSON to " + file.getAbsolutePath() + ": " + e.getMessage());

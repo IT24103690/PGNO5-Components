@@ -97,11 +97,16 @@ public class UserService {
         return user.orElse(null);
     }
 
-    public void updateUser(User updatedUser) throws Exception {
+    public void updateUser(User updatedUser, String originalId) throws Exception {
         List<User> users = getAllUsers();
         for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getId() != null && users.get(i).getId().equals(updatedUser.getId())) {
-                updatedUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+            if (users.get(i).getId() != null && users.get(i).getId().equals(originalId)) {
+                // If a new password is provided, encode it; otherwise, retain the existing password
+                if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
+                    updatedUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+                } else {
+                    updatedUser.setPassword(users.get(i).getPassword());
+                }
                 users.set(i, updatedUser);
                 break;
             }
@@ -111,7 +116,9 @@ public class UserService {
 
     public void deleteUser(String id) throws Exception {
         List<User> users = getAllUsers();
+        System.out.println("Before deletion - Users: " + users + ", Deleting ID: " + id);
         users.removeIf(user -> user.getId() != null && user.getId().equals(id));
+        System.out.println("After deletion - Users: " + users);
         jsonFileHandler.writeToJson(users, WRITABLE_FILE_PATH);
     }
 }

@@ -129,31 +129,39 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public String updateUser(@ModelAttribute User user, @RequestParam(value = "adminLevel", required = false) String adminLevel,
-                             @RequestParam(value = "companyName", required = false) String companyName,
-                             @RequestParam(value = "department", required = false) String department) {
+    @ResponseBody
+    public String updateUser(@RequestBody UserUpdateRequest request) {
         try {
-            User updatedUser = new User(user.getId(), user.getName(), user.getRole(), user.getPassword());
+            System.out.println("Received update request: " + request);
+            if (request == null || request.getUser() == null) {
+                throw new IllegalArgumentException("User data is missing in the request");
+            }
+            User user = request.getUser();
+            String originalId = request.getOriginalId();
+            if (user.getRole() == null || user.getRole().trim().isEmpty()) {
+                throw new IllegalArgumentException("Role is required");
+            }
+            User updatedUser;
             switch (user.getRole().toLowerCase()) {
                 case "admin":
-                    updatedUser = new adminUser(user.getId(), user.getName(), user.getPassword(), adminLevel != null ? adminLevel : "standard");
+                    updatedUser = new adminUser(user.getId(), user.getName(), user.getPassword(), user.getAdminLevel() != null ? user.getAdminLevel() : "standard");
                     break;
                 case "supplier":
-                    updatedUser = new supplierUser(user.getId(), user.getName(), user.getPassword(), companyName != null ? companyName : "Unknown");
+                    updatedUser = new supplierUser(user.getId(), user.getName(), user.getPassword(), user.getCompanyName() != null ? user.getCompanyName() : "Unknown");
                     break;
                 case "staff":
-                    updatedUser = new staffUser(user.getId(), user.getName(), user.getPassword(), department != null ? department : "Unknown");
+                    updatedUser = new staffUser(user.getId(), user.getName(), user.getPassword(), user.getDepartment() != null ? user.getDepartment() : "Unknown");
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid role: " + user.getRole());
             }
-            userService.updateUser(updatedUser);
+            userService.updateUser(updatedUser, originalId);
+            return "success";
         } catch (Exception e) {
             System.err.println("Error updating user: " + e.getMessage());
             e.printStackTrace();
-            return "redirect:/users?error=true";
+            return "error: " + e.getMessage();
         }
-        return "redirect:/users";
     }
 
     @DeleteMapping("/{id}")

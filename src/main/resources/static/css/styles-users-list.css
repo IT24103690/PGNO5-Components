@@ -1,190 +1,183 @@
 body {
-    background-color: #DBEAFF;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
     margin: 0;
+    background-color: #f4f4f9;
 }
-
 .navBar {
-    width: 1300px;
-    height: 50px;
-    margin-top: 30px;
     display: flex;
     justify-content: space-between;
-    padding: 5px;
-}
-
-.Username {
-    background-color: #1C32A2;
+    align-items: center;
+    background-color: #2C3E50;
+    padding: 10px 20px;
     color: white;
-    width: 300px;
-    height: 40px;
-    text-align: center;
-    margin-top: 5px;
-    font-size: 25px;
-    padding-top: 5px;
-    border-radius: 15px;
 }
-
+.navBar .Username {
+    font-size: 1.2em;
+    font-weight: 500;
+}
 .nav {
     display: flex;
-    justify-content: space-between;
-    width: 800px;
-    padding-top: 8px;
+    gap: 10px;
 }
-
-button {
-    background-color: #F4EBE5;
-    height: 40px;
-    padding: 5px;
-    font-size: 17px;
-    min-width: 80px;
-    border-radius: 20px;
-    border: solid #F4EBE5 2px;
-    transition-duration: 0.4s;
+.nav button {
+    background-color: #3498DB;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
 }
-
-button:hover {
-    border: solid 2px #A46F4B;
+.nav button:hover {
+    background-color: #2980B9;
 }
-
-.activeButton {
-    border: solid #A46F4B 2px;
-    background-color: #FFFDFC;
+.nav button.activeButton {
+    background-color: #E74C3C;
 }
-
 .content {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 90px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-
 .infoBox {
-    border: solid 4px;
-    border-radius: 40px;
-    width: 700px;
-    padding-left: 105px;
-    padding-top: 10px;
-    padding-bottom: 20px;
-    background-color: #FFFDFC;
-    box-sizing: border-box;
-    min-height: 500px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
-
-h1 {
-    margin-bottom: 5px;
-    font-size: 24px;
-}
-
-.cardCatalog {
-    height: 400px;
-    width: 600px;
-    overflow-y: auto;
-    margin-top: 20px;
-}
-
-.userCard {
-    height: 70px;
-    width: 540px;
-    background-color: #FFFDFC;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    padding-left: 20px;
-    padding-top: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    border: solid blue 2px;
-    padding-right: 20px;
-}
-
-.userCard p {
-    font-size: 20px;
-    margin: 5px;
-}
-
-.userCard button {
-    margin: 5px;
+.infoBox h1 {
+    color: #2C3E50;
+    font-size: 1.8em;
     margin-top: 0;
 }
-
-.editBtn, .deleteBtn, .cancelBtn {
-    width: 80px;
-    margin-right: 10px;
+.cardCatalog {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
-
+.userCard {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 250px;
+    transition: transform 0.2s;
+}
+.userCard:hover {
+    transform: translateY(-2px);
+}
+.userCard p {
+    margin: 5px 0;
+    color: #7F8C8D;
+}
+.userCard div {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.editBtn, .deleteBtn {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+.editBtn {
+    background-color: #3498DB;
+    color: white;
+}
+.editBtn:hover {
+    background-color: #2980B9;
+}
+.deleteBtn {
+    background-color: #E74C3C;
+    color: white;
+}
+.deleteBtn:hover {
+    background-color: #C0392B;
+}
 .userEditCard {
-    height: 300px;
-    width: 540px;
-    background-color: #FFFDFC;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    padding-left: 20px;
-    padding-top: 10px;
-    display: none;
-    flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-    border: solid blue 2px;
-    padding-right: 20px;
-    font-size: 20px;
-    transition-duration: 0.3s;
-    box-sizing: border-box;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 500px;
+    max-width: 90%;
+    z-index: 1000;
+}
+.cancelBtn {
+    padding: 10px 20px; /* Increase padding for a larger button */
+    font-size: 16px; /* Adjust font size for better readability */
+    background-color: #f44336; /* Red background to match the delete button theme */
+    color: white; /* White text for contrast */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners for a modern look */
+    cursor: pointer; /* Hand cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
+.cancelBtn:hover {
+    background-color: #d32f2f; /* Darker red on hover for interactivity */
+}
 .userEditCardInputs {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    gap: 20px;
 }
-
-.userEditCard input {
-    border: solid 1px black;
-    margin: 0;
-    margin-bottom: 10px;
-    height: 30px;
-    padding-left: 15px;
-    width: 300px;
-    font-size: 20px;
+.userEditCard label {
+    color: #2C3E50;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+.userEditCard input[type="text"],
+.userEditCard input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    width: 100%;
     box-sizing: border-box;
 }
-
+.passwordContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.passwordContainer input {
+    flex: 1;
+}
+.togglePassword {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+}
 .userEditCard .radio {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    gap: 10px;
 }
-
-.userEditCard .radio p {
-    margin-bottom: 5px;
-}
-
 .userEditCard .radio div {
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    gap: 8px;
 }
-
-.userEditCard input[type="radio"] {
-    margin-right: 10px;
-    transform: scale(1.5);
-}
-
 .userEditCard button[type="submit"] {
-    width: 150px;
-    align-self: center;
-    margin-top: 10px;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    width: 100%;
+    background-color: #2ECC71;
+    color: white;
 }
-
-.userEditCard .cancelBtn {
-    width: 100px;
-    align-self: center;
-    margin-top: 10px;
+.userEditCard button[type="submit"]:hover {
+    background-color: #27AE60;
 }
