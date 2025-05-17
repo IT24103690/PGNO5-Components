@@ -5,6 +5,7 @@ import com.inventory.inventorymanagement.util.JsonFileHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -20,13 +21,15 @@ public class UserService {
 
     private final JsonFileHandler jsonFileHandler;
     private final ResourceLoader resourceLoader;
+    private final PasswordEncoder passwordEncoder;
     private static final String USERS_FILE_PATH = "src/main/resources/data/users.json";
     private static final String WRITABLE_FILE_PATH = "src/main/resources/data/users.json";
 
     @Autowired
-    public UserService(ResourceLoader resourceLoader) {
+    public UserService(ResourceLoader resourceLoader, PasswordEncoder passwordEncoder) {
         this.jsonFileHandler = new JsonFileHandler();
         this.resourceLoader = resourceLoader;
+        this.passwordEncoder = passwordEncoder;
         initializeWritableFile();
     }
 
@@ -41,7 +44,7 @@ public class UserService {
                 if (resource.exists()) {
                     Files.copy(resource.getInputStream(), writablePath);
                 } else {
-                    Files.write(writablePath, "[]".getBytes()); // Create empty JSON array
+                    Files.write(writablePath, "[]".getBytes());
                 }
             }
             System.out.println("Initialized writable file at: " + writablePath.toAbsolutePath());
@@ -56,9 +59,10 @@ public class UserService {
         if (users == null) {
             users = new ArrayList<>();
         }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         users.add(user);
         jsonFileHandler.writeToJson(users, WRITABLE_FILE_PATH);
-        System.out.println("User created, saved to: " + new File(WRITABLE_FILE_PATH).getAbsolutePath());
+        System.out.println("User created and saved: " + user);
     }
 
     public List<User> getAllUsers() throws Exception {
@@ -67,6 +71,7 @@ public class UserService {
             initializeWritableFile();
         }
         List<User> users = jsonFileHandler.readFromJson(WRITABLE_FILE_PATH, User.class);
+        System.out.println("Loaded users: " + users);
         return users != null ? users : new ArrayList<>();
     }
 
@@ -79,10 +84,16 @@ public class UserService {
     }
 
     public User getUserByName(String name) throws Exception {
+        System.out.println("Searching for user: " + name);
         List<User> users = getAllUsers();
+        System.out.println("Total users loaded: " + (users != null ? users.size() : 0));
+        System.out.println("Usernames in list: " + users.stream()
+                .map(u -> u.getName() != null ? u.getName() : "null")
+                .collect(java.util.stream.Collectors.joining(", ")));
         Optional<User> user = users.stream()
-                .filter(u -> u.getName() != null && u.getName().equals(name))
+                .filter(u -> u.getName() != null && u.getName().equalsIgnoreCase(name))
                 .findFirst();
+        System.out.println("Found user: " + user.orElse(null));
         return user.orElse(null);
     }
 
@@ -90,6 +101,7 @@ public class UserService {
         List<User> users = getAllUsers();
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getId() != null && users.get(i).getId().equals(updatedUser.getId())) {
+                updatedUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
                 users.set(i, updatedUser);
                 break;
             }

@@ -2,13 +2,89 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockSync5 - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link th:href="@{/css/styles.css}" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .content {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+        .loginBox {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+        .loginBox h1 {
+            color: #2C3E50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            color: #2C3E50;
+            font-weight: 500;
+            text-align: left;
+        }
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #3498DB;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980B9;
+        }
+        .error, .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .error {
+            color: #E74C3C;
+            background-color: #f8e1e1;
+        }
+        .message {
+            color: #27AE60;
+            background-color: #e8f5e9;
+        }
+    </style>
 </head>
 <body>
 <div class="content">
-    <div class="registerBox">
-        <h1>Login</h1>
+    <div class="loginBox">
+        <h1>StockSync5 Login</h1>
+        <div th:if="${error}" class="error" th:text="${error}">Invalid username or password</div>
+        <div th:if="${message}" class="message" th:text="${message}">You have been logged out successfully</div>
         <form th:action="@{/users/login}" method="post">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>

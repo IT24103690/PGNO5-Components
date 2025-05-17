@@ -11,4 +11,9 @@ public class staffUser extends User {
         super(id, name, "staff", password);
         setDepartment(department);
     }
+
+    @Override
+    public String toString() {
+        return "staffUser{id='" + getId() + "', name='" + getName() + "', role='" + getRole() + "', department='" + getDepartment() + "'}";
+    }
 }

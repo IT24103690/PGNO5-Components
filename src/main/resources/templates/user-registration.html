@@ -22,11 +22,12 @@
 <div class="content">
     <div class="registerBox">
         <h1>Register a new user</h1>
+        <div th:if="${error}" class="error" th:text="${error}" style="color: red;"></div>
         <form th:action="@{/users/register}" th:object="${user}" method="post" class="form">
+            <label for="id">ID (optional, auto-generated if blank):</label>
+            <input type="text" id="id" th:field="*{id}" name="id">
             <label for="name">Name:</label>
             <input type="text" id="name" th:field="*{name}" name="name" required>
-            <label for="id">ID:</label>
-            <input type="text" id="id" th:field="*{id}" name="id" required>
             <div class="radio">
                 <p>Role:</p>
                 <div>
@@ -44,6 +45,12 @@
             </div>
             <label for="password">Password:</label>
             <input type="password" id="password" th:field="*{password}" name="password" required>
+            <label for="adminLevel" th:if="${user.role == 'admin'}">Admin Level:</label>
+            <input type="text" id="adminLevel" th:field="*{adminLevel}" name="adminLevel" th:if="${user.role == 'admin'}">
+            <label for="companyName" th:if="${user.role == 'supplier'}">Company Name:</label>
+            <input type="text" id="companyName" th:field="*{companyName}" name="companyName" th:if="${user.role == 'supplier'}">
+            <label for="department" th:if="${user.role == 'staff'}">Department:</label>
+            <input type="text" id="department" th:field="*{department}" name="department" th:if="${user.role == 'staff'}">
             <button type="submit" id="createUserBtn">Create user</button>
         </form>
     </div>

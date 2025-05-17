@@ -1,1 +1,25 @@
-[{"id":"sdwa","name":"tathika","role":"admin","password":"llllll","adminLevel":"standard","companyName":null,"department":null}]
+[ {
+  "id" : "1",
+  "name" : "Tathika",
+  "role" : "admin",
+  "password" : "$2a$10$D3V0ANzQATZ10aS4K4nB2u1jPMYOpDY4YtqWkxMvco8s0LKJ.gBY2",
+  "adminLevel" : "standard",
+  "companyName" : null,
+  "department" : null
+}, {
+  "id" : "2",
+  "name" : "chanula",
+  "role" : "staff",
+  "password" : "$2a$10$s9zXPpvI69XwX7eA4ZgaIuua8mGWp4EbptnCZ7lp0d1YsOv8nMqU6",
+  "adminLevel" : null,
+  "companyName" : null,
+  "department" : "Unknown"
+}, {
+  "id" : "3",
+  "name" : "akhila",
+  "role" : "supplier",
+  "password" : "$2a$10$vJ78ypP6UW79pcITI0X6P.ieJcuoIASQHdrcSzXwHLOYrwzkeZBMG",
+  "adminLevel" : null,
+  "companyName" : "Unknown",
+  "department" : null
+} ]

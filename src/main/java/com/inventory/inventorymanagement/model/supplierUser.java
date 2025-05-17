@@ -11,4 +11,9 @@ public class supplierUser extends User {
         super(id, name, "supplier", password);
         setCompanyName(companyName);
     }
+
+    @Override
+    public String toString() {
+        return "supplierUser{id='" + getId() + "', name='" + getName() + "', role='" + getRole() + "', companyName='" + getCompanyName() + "'}";
+    }
 }

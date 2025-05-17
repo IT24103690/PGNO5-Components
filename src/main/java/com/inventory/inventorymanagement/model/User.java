@@ -1,7 +1,19 @@
 package com.inventory.inventorymanagement.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "role"
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = adminUser.class, name = "admin"),
+        @JsonSubTypes.Type(value = staffUser.class, name = "staff"),
+        @JsonSubTypes.Type(value = supplierUser.class, name = "supplier")
+})
 public class User {
     private String id;
     private String name;
@@ -80,5 +92,10 @@ public class User {
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        return "User{id='" + id + "', name='" + name + "', role='" + role + "'}";
     }
 }
