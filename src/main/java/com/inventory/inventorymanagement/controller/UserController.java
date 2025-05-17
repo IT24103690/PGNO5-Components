@@ -1,9 +1,9 @@
 package com.inventory.inventorymanagement.controller;
 
+import com.inventory.inventorymanagement.model.User;
 import com.inventory.inventorymanagement.model.adminUser;
 import com.inventory.inventorymanagement.model.staffUser;
 import com.inventory.inventorymanagement.model.supplierUser;
-import com.inventory.inventorymanagement.model.User;
 import com.inventory.inventorymanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ public class UserController {
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new adminUser());
+        model.addAttribute("user", new User());
         return "user-registration";
     }
 
@@ -32,7 +32,11 @@ public class UserController {
             if (user.getId() == null) {
                 user.setId(UUID.randomUUID().toString());
             }
-            User newUser;
+            if (user.getRole() == null || user.getRole().trim().isEmpty()) {
+                model.addAttribute("error", "Role is required");
+                return "user-registration";
+            }
+            User newUser = new User(user.getId(), user.getName(), user.getRole(), user.getPassword());
             switch (user.getRole().toLowerCase()) {
                 case "admin":
                     newUser = new adminUser(user.getId(), user.getName(), user.getPassword(), adminLevel != null ? adminLevel : "standard");
@@ -66,7 +70,7 @@ public class UserController {
         try {
             var users = userService.getAllUsers();
             model.addAttribute("users", users);
-            model.addAttribute("selectedUser", new adminUser());
+            model.addAttribute("selectedUser", new User());
             System.out.println("User list loaded with " + users.size() + " users");
             return "user-list";
         } catch (Exception e) {
@@ -94,7 +98,7 @@ public class UserController {
                              @RequestParam(value = "companyName", required = false) String companyName,
                              @RequestParam(value = "department", required = false) String department) {
         try {
-            User updatedUser;
+            User updatedUser = new User(user.getId(), user.getName(), user.getRole(), user.getPassword());
             switch (user.getRole().toLowerCase()) {
                 case "admin":
                     updatedUser = new adminUser(user.getId(), user.getName(), user.getPassword(), adminLevel != null ? adminLevel : "standard");

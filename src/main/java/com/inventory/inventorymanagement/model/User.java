@@ -1,15 +1,23 @@
 package com.inventory.inventorymanagement.model;
 
-public abstract class User {
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class User {
     private String id;
     private String name;
     private String role;
     private String password;
+    @JsonProperty("adminLevel")
+    private String adminLevel;
+    @JsonProperty("companyName")
+    private String companyName;
+    @JsonProperty("department")
+    private String department;
 
-    // Default constructor
+    // Default constructor for JSON deserialization
     public User() {}
 
-    // Constructor with fields
+    // Constructor with basic fields
     public User(String id, String name, String role, String password) {
         this.id = id;
         this.name = name;
@@ -48,5 +56,29 @@ public abstract class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getAdminLevel() {
+        return adminLevel;
+    }
+
+    public void setAdminLevel(String adminLevel) {
+        this.adminLevel = adminLevel;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 }

@@ -20,8 +20,8 @@ public class UserService {
 
     private final JsonFileHandler jsonFileHandler;
     private final ResourceLoader resourceLoader;
-    private static final String USERS_FILE_PATH = "src/main/resources/data/users.json"; // Corrected to standard resource path
-    private static final String WRITABLE_FILE_PATH = "src/main/resources/data/users.json"; // Relative to project root
+    private static final String USERS_FILE_PATH = "src/main/resources/data/users.json";
+    private static final String WRITABLE_FILE_PATH = "src/main/resources/data/users.json";
 
     @Autowired
     public UserService(ResourceLoader resourceLoader) {
