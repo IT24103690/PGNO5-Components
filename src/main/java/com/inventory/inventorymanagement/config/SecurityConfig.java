@@ -15,7 +15,6 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        // Allow public access to all endpoints for development
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
@@ -27,7 +26,6 @@ public class SecurityConfig {
                         .permitAll()
                         .logoutSuccessUrl("/users/login")
                 )
-                // Disable CSRF for simplicity (already disabled in your config)
                 .csrf(csrf -> csrf.disable());
 
         return http.build();

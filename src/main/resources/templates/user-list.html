@@ -7,7 +7,7 @@
     <link th:href="@{/css/styles-users-list.css}" rel="stylesheet">
 </head>
 <body>
-<!--@thymesVar id="user" type="com.inventory.inventorymanagement.model.User"-->
+<!--@thymesVar id="users" type="java.util.List"-->
 <!--@thymesVar id="selectedUser" type="com.inventory.inventorymanagement.model.User"-->
 <div class="navBar">
     <div class="Username">Peter Kawinsky</div>
@@ -77,11 +77,13 @@
             .then(user => {
                 if (user) {
                     document.getElementById('editForm').style.display = 'flex';
-                    document.querySelector('[id="editName"]').value = user.name;
-                    document.querySelector('[id="editId"]').value = user.id;
-                    const roleRadio = document.querySelector('[id^="edit"][value="' + user.role + '"]');
+                    document.getElementById('editName').value = user.name || '';
+                    document.getElementById('editId').value = user.id || '';
+                    const roleRadio = document.querySelector(`input[id^="edit"][value="${user.role}"]`);
                     if (roleRadio) roleRadio.checked = true;
-                    document.querySelector('[id="editPassword"]').value = user.password;
+                    document.getElementById('editPassword').value = user.password || '';
+                } else {
+                    console.error('User not found');
                 }
             })
             .catch(error => console.error('Error fetching user:', error));
@@ -98,6 +100,25 @@
     function cancelEdit() {
         document.getElementById('editForm').style.display = 'none';
     }
+
+    document.querySelector('form.userEditCardInputs').addEventListener('submit', function(event) {
+        event.preventDefault();
+        fetch('/users/update', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                id: document.getElementById('editId').value,
+                name: document.getElementById('editName').value,
+                role: document.querySelector('input[name="role"]:checked').value,
+                password: document.getElementById('editPassword').value
+            })
+        })
+            .then(response => {
+                if (response.ok) location.reload();
+                else console.error('Update failed');
+            })
+            .catch(error => console.error('Error updating user:', error));
+    });
 </script>
 </body>
 </html>

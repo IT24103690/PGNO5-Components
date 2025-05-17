@@ -1,0 +1,31 @@
+[ {
+  "id" : "1234",
+  "name" : "Sachintha",
+  "role" : "staff",
+  "password" : "whatthehell"
+}, {
+  "id" : "1234",
+  "name" : "Tathika",
+  "role" : "admin",
+  "password" : "Iamman!"
+}, {
+  "id" : "123",
+  "name" : "Tathika",
+  "role" : "admin",
+  "password" : "tathika123"
+}, {
+  "id" : "123",
+  "name" : "tathika",
+  "role" : "admin",
+  "password" : "1234"
+}, {
+  "id" : "123",
+  "name" : "tathika",
+  "role" : "admin",
+  "password" : "12345"
+}, {
+  "id" : "123",
+  "name" : "tathika",
+  "role" : "admin",
+  "password" : "1234"
+} ]
