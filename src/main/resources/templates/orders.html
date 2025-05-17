@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #5290AD; /* Blue background */
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            background-color: #6ba8c2; /* Lighter shade of blue */
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #ffffff;
+            margin-bottom: 25px;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .content-section {
+            background-color: #F7F7F7; /* White section */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #5290AD; /* Blue for header */
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #e8e8e8;
+        }
+        button {
+            background-color: #AD6F52; /* Brown for buttons */
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            margin: 2px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #8d5c45; /* Darker brown for hover */
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .form-container input {
+            margin: 5px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: calc(100% - 10px);
+            max-width: 300px;
+        }
+        .cancel-btn {
+            background-color: #6c757d; /* Gray for cancel button */
+        }
+        .cancel-btn:hover {
+            background-color: #5a6268;
+        }
+        .fulfill-btn {
+            background-color: #28a745; /* Green for fulfill button */
+        }
+        .fulfill-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Order Management</h1>
+
+    <div class="content-section form-container">
+        <h2 th:text="${editMode} ? 'Edit Order' : 'Add Order'"></h2>
+        <form th:action="${editMode} ? '/orders/edit' : '/orders/add'" th:method="post" th:object="${order}">
+            <input type="hidden" th:field="*{id}" />
+            <div class="mb-3">
+                <input type="text" th:field="*{customer}" placeholder="Customer Name" required />
+            </div>
+            <div class="mb-3">
+                <input type="text" th:field="*{product}" placeholder="Product Name" required />
+            </div>
+            <div>
+                <button type="submit" th:text="${editMode} ? 'Update Order' : 'Add Order'"></button>
+                <a th:if="${editMode}" href="/orders"><button type="button" class="cancel-btn">Cancel</button></a>
+            </div>
+        </form>
+    </div>
+
+    <div class="content-section">
+        <h2>Orders</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Fulfilled</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.customer}"></td>
+                <td th:text="${order.product}"></td>
+                <td th:text="${order.fulfilled} ? 'Yes' : 'No'"></td>
+                <td>
+                    <a th:href="'/orders/edit/' + ${order.id}"><button>Edit</button></a>
+                    <a th:href="'/orders/delete/' + ${order.id}"><button>Delete</button></a>
+                    <a th:if="${!order.fulfilled}" th:href="'/orders/fulfill/' + ${order.id}">
+                        <button class="fulfill-btn">Fulfill</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
