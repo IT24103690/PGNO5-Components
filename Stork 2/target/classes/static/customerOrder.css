@@ -1,0 +1,88 @@
+.orderCard{
+    height: 60px;
+    width: 540px;
+    background-color: #FFFDFC;
+    border-radius: 15px;
+    border: solid blue 2px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    padding-top: 13px;
+    justify-content: space-between;
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+}
+
+.nav{
+    width: 175px;
+}
+
+.orderCard p {
+    margin: 0px;
+}
+
+.form{
+    margin-top: 50px;
+    margin-bottom: 130px;
+}
+
+.orderCard button{
+    margin: 0px;
+    margin-left: 10px;
+}
+
+.finishedOrders {
+    border-color: #00BF63;
+}
+
+.activeOrderCard {
+    height: 110px;
+    width: 540px;
+    background-color: #FFFDFC;
+    border-radius: 15px;
+    border: solid blue 2px;
+    font-size: 20px;
+    display: flex;
+    padding: 20px;
+    padding-top: 13px;
+    justify-content: space-between;
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+}
+
+.activeOrderCard p{
+    margin: 0px;
+    margin-right: 10px;
+    margin-top: 13px;
+}
+
+.activeOrderCard input{
+    height: 25px;
+    width: 250px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: solid black 2px;
+    padding-left: 10px;
+    margin-right: 5px;
+}
+
+.activeOrderCard select{
+    height: 32px;
+    width: 260px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: solid black 2px;
+    padding-left: 10px;
+    margin-right: 5px;
+}
+
+.activeOrderCard button{
+    margin-top: 50px;
+}
+
+.linesInTheActiveOrderCard{
+    display: flex;
+    flex-direction: row;
+    margin: 0px;
+}

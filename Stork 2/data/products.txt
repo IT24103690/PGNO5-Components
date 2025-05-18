@@ -1,0 +1,2 @@
+281HY, Apples, 170, kilo, Apple
+207HA, Bananas, 180, kilo, Banana

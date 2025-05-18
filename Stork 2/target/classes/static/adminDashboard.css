@@ -1,0 +1,71 @@
+.nav{
+    width: 700px;
+}
+
+.form{
+    margin-top: 65px;
+    margin-bottom: 130px;
+}
+
+.infoBox{
+    height: 270px;
+    margin-bottom: 12px;
+}
+
+.infoBox h1{
+    margin-top: 5px;
+    margin-left: 25px;
+}
+
+.cardCatalog{
+    margin-top: 20px;
+    height: 190px;
+}
+
+.Card{
+    height: 65px;
+    width: 540px;
+    background-color: #FFFDFC;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid gray 2px;
+    padding-right: 20px;
+    font-size: 20px;
+}
+
+.Card p{
+    margin: 0 0 5px;;
+}
+
+.Card button{
+    margin-top: 7px;
+}
+
+.sent {
+    height: 90px;
+    border: solid red 2px;
+}
+
+.received{
+    height: 90px;
+    border: solid green 2px;
+}
+
+.editUN{
+    height: 50px;
+    margin-top: 5px;
+    background-color: lightblue;
+    border: solid 2px #A46F4B;
+    color: black;
+}
+
+.addSpace{
+    margin-right: 250px;
+}

@@ -1,0 +1,129 @@
+.horizontalStuff{
+    display: flex;
+    flex-direction: row;
+}
+
+.butMakeItShorter{
+    width: 175px;
+}
+
+.horizontalStuff input{
+    width: 175px;
+    height: 50px;
+}
+
+select{
+    height: 50px;
+}
+
+.verticalStuff{
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+}
+
+.requestCard {
+    height: 95px;
+    width: 540px;
+    background-color: #FFFDFC;
+    border-radius: 15px;
+    border: solid dimgray 2px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 20px 0;
+    margin-bottom: 10px;
+}
+
+p{
+    margin: 5px;
+}
+
+.edit {
+    height: 110px;
+}
+
+.edit input{
+    border: solid black 2px;
+    height: 30px;
+    width: 200px;
+    margin-top: 10px;
+}
+.edit select{
+    border: solid black 2px;
+    margin-left: 5px;
+    height: 36px;
+    width: 210px;
+}
+
+.edit p{
+    margin-top: 15px;
+}
+
+.completed{
+    border: solid 2px #5c985c;
+}
+
+
+
+
+
+
+.marginRight{
+    margin-right: 10px;
+}
+
+.supplierRequest{
+    height: 70px;
+}
+
+.sameLineStuff{
+    display: flex;
+    flex-direction: row;
+}
+
+.sameLineStuff p{
+    margin-top: 20px;
+}
+
+.sameLineStuff input{
+    width: 330px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+.fakeInput{
+    margin-top: 5px;
+    border: #FFFDFC;
+    height: 37px;
+    width: 375px;
+    padding-top: 10px;
+    padding-left: 15px;
+    font-size: 20px;
+}
+
+.form{
+    margin-bottom: 55px;
+    margin-top: 20px;
+}
+
+.shorter{
+    width: 175px;
+    height: 35px;
+    margin-right: 5px;
+    margin-top: 8px;
+}
+
+.editInput{
+    margin-top: 5px;
+    border: solid black 2px;
+    height: 30px;
+    padding-left: 10px;
+    padding-top: 5px;
+    width: 200px;
+}
+
+.verticalStuff input{
+    height: 40px;
+}
