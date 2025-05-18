@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html xmlns:th="http://www.thymeleaf.org">
+        <head>
+        <title>Create Supplier</title>
+</head>
+<body>
+<h1>Register Supplier</h1>
+<form action="#" th:action="@{/suppliers/create}" method="post">
+    Name: <input type="text" name="name"/><br/>
+    Contact: <input type="text" name="contact"/><br/>
+    Products (comma separated): <input type="text" name="products"/><br/>
+    Type:
+    <select name="type">
+        <option value="local">Local</option>
+        <option value="international">International</option>
+    </select><br/>
+    Region/Country: <input type="text" name="regionOrCountry"/><br/>
+    <button type="submit">Create</button>
+</form>
+</body>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>

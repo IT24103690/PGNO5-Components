@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+    <title>Supplier List</title>
+</head>
+<body>
+<h1>Suppliers</h1>
+<a href="/suppliers/create">Add New Supplier</a>
+<ul>
+  <li th:each="s : ${suppliers}">
+    <span th:text="${s.displayDetails()}"></span>
+    <a th:href="@{'/suppliers/delete'(name=${s.name})}">Delete</a>
+  </li>
+</ul>
+</body>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>
