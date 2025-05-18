@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Orders</title>'
+    <link rel="stylesheet" href="/index.css" />
+    <link rel="stylesheet" href="/product.css"/>
+</head>
+<body>
+<div class="navBar">
+    <div class="Username">Peter Kawinsky</div>
+    <div class="nav">
+        <button>Users</button>
+        <button class="activeButton">Products</button>
+        <button>Stocks</button>
+        <button>Customers</button>
+        <button>Orders</button>
+        <button>Requests</button>
+        <button>Log out</button>
+    </div>
+</div>
+<div class="content">
+    <form class="registerBox" method="post" action="/products/addProduct">
+        <h1>Register a new product</h1>
+        <div class="form">
+            <label for="productNameInput">Name:</label>
+            <input name="productName" type="text" id="productNameInput" />
+            <label for="productIdInput">ID:</label>
+            <input name="idInput" type="text" id="productIdInput" />
+            <div class="priceAndUnitInput">
+                <div class="priceAndUnitInputBoxesSeperate">
+                    <label for="priceInput">Price:</label>
+                    <input id="priceInput" type="number" name="priceInput"/>
+                </div>
+                <div class="priceAndUnitInputBoxesSeperate">
+                    <label for="unitInput">Unit:</label>
+                    <input id="unitInput" type="text" name="unitInput"/>
+                </div>
+            </div>
+            <label>Supplier:</label>
+            <select for="supplierInput" name="supplierInput">
+                <option value="Apple">Apple</option>
+                <option value="Care Bear">Care bear</option>
+                <option value="Keels">Keels</option>
+            </select>
+        </div>
+        <button type="submit">Create Product</button>
+    </form>
+    <div class="infoBox">
+        <form class="searchBox" method="post" action="/products/search">
+            <input type="text" id="searchUserInput" name="idInput"/>
+            <button id="searchUserButton" type="submit">search</button>
+        </form>
+        <div class="cardCatalog">
+            <div class="productCard" th:if="${isEditProduct == false}" th:each="product : ${products}">
+                <div>
+                    <p th:text="${product.name + ' (' + product.id + ')'}">Apple Sauce (SJF9245)</p>
+                    <p th:text="'Supplier: ' + ${product.supplier}">Supplier: Apple</p>
+                    <p th:text="'Price: ' + ${product.price} + ' / ' + ${product.unit}">Price: 180,000 / kilo</p>
+                </div>
+                <form method="post" action="/products/editOrDeleteProduct">
+                    <input type="hidden" name="idInput" th:value="${product.id}"/>
+                    <button type="submit" name="action" value="edit">Edit</button>
+                    <button type="submit" name="action" value="delete">Delete</button>
+                </form>
+            </div>
+            <form class="productCard edit" th:if="${isEditProduct}" method="post" action="products/editProduct">
+                <div class="columns">
+                    <label>Name:</label>
+                    <label>ID:</label>
+                    <label>Supplier:</label>
+                    <label>Price:</label>
+                    <label>Unit:</label>
+                </div>
+                <div class="columns withSpace">
+                    <input name="productName" type="text" th:value="${editProduct.name}"/>
+                    <input name="productId" type="text" th:value="${editProduct.id}"/>
+                    <select name="productSupplier" th:value="${editProduct.supplier}">
+                        <option value="Apple">Apple</option>
+                        <option value="Care Bear">Care bear</option>
+                        <option value="Keels">Keels</option>
+                    </select>
+                    <input type="number" name="productPrice" th:value="${editProduct.price}"/>
+                    <input type="text" name="productUnit" th:value="${editProduct.unit}"/>
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
