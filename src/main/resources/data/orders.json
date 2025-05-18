@@ -1,0 +1,45 @@
+[ {
+  "id" : "e30802f9-3a97-44ba-bccf-478a11a228ac",
+  "userId" : "",
+  "customerName" : "Chanula",
+  "product" : "Watch",
+  "quantity" : 1,
+  "orderType" : "online",
+  "totalAmount" : 0.0,
+  "orderDate" : 1747550501101,
+  "status" : "Pending",
+  "shippingAddress" : null
+}, {
+  "id" : null,
+  "userId" : null,
+  "customerName" : "Akila",
+  "product" : "condom",
+  "quantity" : 1,
+  "orderType" : "inStore",
+  "totalAmount" : 120.0,
+  "orderDate" : 1747554463132,
+  "status" : "Pending",
+  "storeLocation" : "no.5 sepansabfewnwkoj"
+}, {
+  "id" : null,
+  "userId" : null,
+  "customerName" : "Akila",
+  "product" : "Watch",
+  "quantity" : 3,
+  "orderType" : "online",
+  "totalAmount" : 120.0,
+  "orderDate" : 1747554562883,
+  "status" : "Pending",
+  "shippingAddress" : "3432542623"
+}, {
+  "id" : null,
+  "userId" : null,
+  "customerName" : "Anjalani",
+  "product" : "Watch",
+  "quantity" : 1,
+  "orderType" : "inStore",
+  "totalAmount" : 1000.0,
+  "orderDate" : 1747557832359,
+  "status" : "Pending",
+  "storeLocation" : "nfejksbfkesf"
+} ]

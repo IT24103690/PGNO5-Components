@@ -16,10 +16,18 @@
   "department" : "Unknown"
 }, {
   "id" : "3",
-  "name" : "Akhila",
-  "role" : "supplier",
-  "password" : "$2a$10$fraZ0hsNVmsDvaetf137Seo9C3.agY.OKzWXUT3h0iwneInbjx3xe",
+  "name" : "Akila",
+  "role" : "staff",
+  "password" : "$2a$10$Zoo.Reh.dYz1SE9M6gz0J.QQ2OhVm6ZBxKqklb81dTjPe4jpPyvou",
   "adminLevel" : null,
-  "companyName" : "Unknown",
-  "department" : null
+  "companyName" : null,
+  "department" : "Unknown"
+}, {
+  "id" : "10",
+  "name" : "AnjalaniSF",
+  "role" : "staff",
+  "password" : "$2a$10$.1ZlGjKRaA/vgOLteqI/G.zLma2PaXMXRnohLG7R.4oOmUlF.HGMu",
+  "adminLevel" : null,
+  "companyName" : null,
+  "department" : "Unknown"
 } ]

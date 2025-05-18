@@ -139,14 +139,14 @@
     </div>
 </div>
 <div class="sidebar">
-    <a th:href="@{/orders/dashboard}">Manage Orders</a>
-    <a th:href="@{/orders/history}">Order History</a>
+    <a th:href="@{/order/dashboard}">Manage Orders</a>
+    <a th:href="@{/order/history}">Order History</a>
 </div>
 <div class="content">
     <div class="infoBox">
         <h1>Create New Order</h1>
         <div th:if="${error}" class="error" th:text="${error}"></div>
-        <form th:action="@{/orders/create}" th:object="${order}" method="post">
+        <form th:action="@{/order/create}" th:object="${order}" method="post">
             <input th:if="${_csrf != null}" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <input type="hidden" th:field="*{userId}" th:value="${userId}" />
             <label for="totalAmount">Total Amount ($):</label>

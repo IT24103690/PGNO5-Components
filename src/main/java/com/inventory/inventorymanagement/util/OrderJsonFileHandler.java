@@ -1,0 +1,55 @@
+package com.inventory.inventorymanagement.util;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
+public class OrderJsonFileHandler {
+    private final ObjectMapper objectMapper;
+
+    public OrderJsonFileHandler() {
+        this.objectMapper = new ObjectMapper();
+        this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        this.objectMapper.configure(com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
+
+    public <T> List<T> readFromJson(String filePath, Class<T> clazz) throws IOException {
+        File file = new File(filePath);
+        System.out.println("Attempting to read orders JSON from: " + file.getAbsolutePath());
+        if (!file.exists()) {
+            System.out.println("Orders file does not exist: " + file.getAbsolutePath() + ". Creating empty file.");
+            Files.createDirectories(file.getParentFile().toPath());
+            Files.write(Paths.get(filePath), "[]".getBytes());
+        }
+        try {
+            List<T> result = objectMapper.readValue(file, objectMapper.getTypeFactory().constructCollectionType(List.class, clazz));
+            System.out.println("Successfully read " + (result != null ? result.size() : 0) + " orders from JSON: " + result);
+            return result != null ? result : new ArrayList<>();
+        } catch (IOException e) {
+            System.err.println("Error reading orders JSON from " + file.getAbsolutePath() + ": " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    public <T> void writeToJson(List<T> data, String filePath) throws IOException {
+        File file = new File(filePath);
+        System.out.println("Writing orders JSON to: " + file.getAbsolutePath() + " with data: " + data);
+        try {
+            Files.createDirectories(file.getParentFile().toPath());
+            objectMapper.writeValue(file, data);
+            System.out.println("Successfully wrote " + (data != null ? data.size() : 0) + " orders to JSON.");
+        } catch (IOException e) {
+            System.err.println("Error writing orders JSON to " + file.getAbsolutePath() + ": " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
+    }
+}
