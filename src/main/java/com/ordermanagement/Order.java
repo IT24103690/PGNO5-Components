@@ -7,6 +7,7 @@ public class Order {
     private Long id;
     private String customer;
     private String product;
+
     private boolean fulfilled;
 
     public Order() {
