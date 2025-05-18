@@ -2,8 +2,24 @@
   "id" : "1",
   "name" : "Tathika",
   "role" : "admin",
-  "password" : "$2a$10$pHXEEpCmsK5.zusGLwB0j.JZrEP11pg7rEGgH1yDcCDbar19PkUZS",
+  "password" : "$2a$10$CZknGY1e.pLaTC34w0bzsuKHl1Me4m4/VsOOuLI.xJkhd5wQMU6OW",
   "adminLevel" : "standard",
   "companyName" : null,
+  "department" : null
+}, {
+  "id" : "2",
+  "name" : "chanula",
+  "role" : "staff",
+  "password" : "$2a$10$R1ImltrrKui64Nz9lFoaK.9QPQtdwiGy6oZZRF7FKM.KAcinKIPpi",
+  "adminLevel" : null,
+  "companyName" : null,
+  "department" : "Unknown"
+}, {
+  "id" : "3",
+  "name" : "Akhila",
+  "role" : "supplier",
+  "password" : "$2a$10$fraZ0hsNVmsDvaetf137Seo9C3.agY.OKzWXUT3h0iwneInbjx3xe",
+  "adminLevel" : null,
+  "companyName" : "Unknown",
   "department" : null
 } ]

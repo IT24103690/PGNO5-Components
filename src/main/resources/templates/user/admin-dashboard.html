@@ -105,7 +105,7 @@
         <button onclick="window.location.href='/users'">Users</button>
         <button onclick="window.location.href='/products'">Products</button>
         <button onclick="window.location.href='/stocks'">Stocks</button>
-        <button onclick="window.location.href='/orders'">Orders</button>
+        <button onclick="window.location.href='/order/dashboard'">Orders</button>
         <button onclick="window.location.href='/logout'">Log out</button>
     </div>
 </div>
@@ -113,7 +113,7 @@
     <a th:href="@{/users}">Manage Users</a>
     <a th:href="@{/products}">Manage Products</a>
     <a th:href="@{/stocks}">Manage Stocks</a>
-    <a th:href="@{/orders}">Manage Orders</a>
+    <a th:href="@{/order/dashboard}">Manage Orders</a>
 </div>
 <div class="content">
     <h1>StockSync5 Admin Dashboard</h1>
@@ -136,7 +136,7 @@
         <div class="card">
             <h2>Orders</h2>
             <p>Track and fulfill customer orders.</p>
-            <a th:href="@{/orders}">Go to Orders</a>
+            <a th:href="@{/order/dashboard}">Go to Orders</a>
         </div>
     </div>
 </div>

@@ -7,18 +7,34 @@
     <link th:href="@{/css/styles-users-list.css}" rel="stylesheet">
     <style>
         .cancelBtn {
-            padding: 10px 20px; /* Increase padding for a larger button */
-            font-size: 16px; /* Adjust font size for better readability */
-            background-color: #f44336; /* Red background to match the delete button theme */
-            color: white; /* White text for contrast */
-            border: none; /* Remove default border */
-            border-radius: 5px; /* Rounded corners for a modern look */
-            cursor: pointer; /* Hand cursor on hover */
-            transition: background-color 0.3s; /* Smooth transition for hover effect */
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .cancelBtn:hover {
-            background-color: #d32f2f; /* Darker red on hover for interactivity */
+            background-color: #d32f2f;
+        }
+
+        .registerBtn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .registerBtn:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -32,13 +48,16 @@
         <button class="activeButton">Users</button>
         <button onclick="window.location.href='/products'">Products</button>
         <button onclick="window.location.href='/stocks'">Stocks</button>
-        <button onclick="window.location.href='/orders'">Orders</button>
+        <button onclick="window.location.href='/order/dashboard'">Orders</button>
+        <button onclick="window.location.href='/customers'">Customers</button>
+        <button onclick="window.location.href='/requests'">Requests</button>
         <button onclick="window.location.href='/logout'">Log out</button>
     </div>
 </div>
 <div class="content">
     <div class="infoBox">
         <h1>User List</h1>
+        <button class="registerBtn" onclick="window.location.href='/users/register'">Register New User</button>
         <div th:if="${error}" class="error" th:text="${error}" style="color: red;"></div>
         <div class="cardCatalog">
             <div th:if="${users != null and not #lists.isEmpty(users)}">
@@ -103,7 +122,7 @@
 
     function editUser(button) {
         const userId = button.getAttribute('data-id');
-        originalId = userId; // Store the original ID
+        originalId = userId;
         fetch('/users/' + userId)
             .then(response => response.json())
             .then(user => {
@@ -120,7 +139,7 @@
                     if (adminLevelInput) adminLevelInput.value = user.adminLevel || '';
                     if (departmentInput) departmentInput.value = user.department || '';
                     if (companyNameInput) companyNameInput.value = user.companyName || '';
-                    document.getElementById('editPassword').value = ''; // Clear password field
+                    document.getElementById('editPassword').value = '';
                 } else {
                     console.error('User not found');
                 }

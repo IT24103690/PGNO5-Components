@@ -1,3 +1,4 @@
+
 package com.inventory.inventorymanagement.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;

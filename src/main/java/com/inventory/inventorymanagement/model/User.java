@@ -1,3 +1,4 @@
+
 package com.inventory.inventorymanagement.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
