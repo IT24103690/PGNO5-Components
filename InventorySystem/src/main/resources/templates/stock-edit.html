@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Stock Transaction - Inventory System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F7F7F7;
+            color: #000;
+        }
+        .navbar {
+            background-color: #5290AD;
+        }
+        .card {
+            background-color: #FFF;
+            border-color: #AD6F52;
+        }
+        .btn-primary {
+            background-color: #5290AD;
+            border-color: #5290AD;
+        }
+        .error-message {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Inventory System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/stock/entry">Stock Entry</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/stock/overview">Stock Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/stock/adjustment">Stock Adjustment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Edit Stock Transaction</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Error Message -->
+                    <div th:if="${errorMessage}" class="alert alert-danger">
+                        <span th:text="${errorMessage}">Error Message</span>
+                    </div>
+
+                    <form th:action="@{/stock/edit}" method="post" id="editTransactionForm">
+                        <input type="hidden" name="transactionId" th:value="${transaction.id}">
+
+                        <div class="mb-3">
+                            <label for="productId" class="form-label">Product ID</label>
+                            <input type="text" class="form-control" id="productId"
+                                   name="productId"
+                                   th:value="${transaction.productId}"
+                                   required>
+                            <div class="invalid-feedback">Product ID is required.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="productName" class="form-label">Product Name</label>
+                            <input type="text" class="form-control" id="productName"
+                                   name="productName"
+                                   th:value="${transaction.productName}"
+                                   required>
+                            <div class="invalid-feedback">Product name is required.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="quantity" class="form-label">Quantity</label>
+                            <input type="number" class="form-control" id="quantity"
+                                   name="quantity"
+                                   th:value="${transaction.quantity}"
+                                   min="1"
+                                   required>
+                            <div class="invalid-feedback">Quantity must be greater than zero.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="transactionType" class="form-label">Transaction Type</label>
+                            <select class="form-select" id="transactionType"
+                                    name="transactionType" required>
+                                <option th:each="type : ${transactionTypes}"
+                                        th:value="${type}"
+                                        th:text="${type}"
+                                        th:selected="${type == transaction.transactionType}">
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">Please select a transaction type.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="userId" class="form-label">User ID</label>
+                            <input type="text" class="form-control" id="userId"
+                                   name="userId"
+                                   th:value="${transaction.userId}"
+                                   required>
+                            <div class="invalid-feedback">User ID is required.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="notes" class="form-label">Notes (Optional)</label>
+                            <textarea class="form-control" id="notes"
+                                      name="notes"
+                                      rows="3"
+                                      th:text="${transaction.notes}"></textarea>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">Update Transaction</button>
+                            <a th:href="@{/stock/transaction/{id}(id=${transaction.id})}" class="btn btn-secondary">Cancel</a>
+                            <a th:href="@{/stock/overview}" class="btn btn-outline-secondary">Back to Overview</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('editTransactionForm');
+
+        form.addEventListener('submit', function(event) {
+            let isValid = true;
+            const productId = form.querySelector('#productId');
+            const productName = form.querySelector('#productName');
+            const quantity = form.querySelector('#quantity');
+            const userId = form.querySelector('#userId');
+
+            // Validate Product ID
+            if (!productId.value.trim()) {
+                productId.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                productId.classList.remove('is-invalid');
+            }
+
+            // Validate Product Name
+            if (!productName.value.trim()) {
+                productName.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                productName.classList.remove('is-invalid');
+            }
+
+            // Validate Quantity
+            if (!quantity.value || parseInt(quantity.value) <= 0) {
+                quantity.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                quantity.classList.remove('is-invalid');
+            }
+
+            // Validate User ID
+            if (!userId.value.trim()) {
+                userId.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                userId.classList.remove('is-invalid');
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+</body>
+</html>
