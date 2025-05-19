@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Orders</title>'
+  <link rel="stylesheet" href="/index.css" />
+  <link rel="stylesheet" href="/customerOrder.css"/>
+</head>
+<body>
+<div class="navBar">
+  <div class="Username">Peter Kawinsky</div>
+  <div class="nav">
+    <button class="activeButton">Orders</button>
+    <button>Log out</button>
+  </div>
+</div>
+<div class="content">
+  <div class="registerBox">
+    <h1>Place a new order:</h1>
+    <div class="form">
+      <label for="productInput">Product:</label>
+      <select id="productInput">
+        <option value="product1">Bananas</option>
+        <option value="product1">French fries</option>
+        <option value="product1">Snails</option>
+      </select>
+      <label for="amountInput">Amount:</label>
+      <input name="amountInput" type="text" id="amountInput">
+      <p>Total cost:</p>
+      <div class="fakeInput"></div>
+    </div>
+    <button id="createUserBtn">Create order</button>
+  </div>
+  <div class="infoBox">
+    <form class="searchBox" method="post" th:action="@{/createOrders/searchBarToggle}">
+      <input type="Long" id="searchOrderInput" name="IDsearchBox"/>
+      <button id="searchOrderButton" name="searchBarButtons" value="search" >search</button>
+      <button id="pendingOrderButton" th:classappend="${isPendingOrders} ? 'activeButton' : ''" type="submit" name="searchBarButtons" value="pending">pending</button>
+    </form>
+    <div class="cardCatalog">
+      <div class="orderCard" th:if="${editOrderIdCustomer == null}" th:each="order : ${orders}" th:classappend="${order.isFulfilled} ? ' finishedOrders'">
+        <div>
+          <p th:text="${order.product} + ' (' + ${order.id} + ' )'">Kavum (HWK2345)</p>
+          <p th:text="'Amount: ' + ${order.amount}">Amount: 50</p>
+        </div>
+        <form method="post" action="${/orders}">
+          <button th:if="${!order.isFulfilled}" type="submit">Edit</button>
+          <button>Delete</button>
+        </form>
+      </div>
+      <div class="activeOrderCard" th:if="${editOrderIdCustomer != null && order.id == editOrderIdCustomer}">
+        <div>
+          <div class="linesInTheActiveOrderCard">
+            <p>Product: </p>
+            <select for="productChangeInput">
+              <option value="productChangeInput">Bananas</option>
+              <option value="productChangeInput">French fries</option>
+              <option value="productChangeInput">Snails</option>
+            </select>
+            <p th:text="'(' + ${order.id} + ')'">(HWJ30476)</p>
+          </div>
+          <div class="linesInTheActiveOrderCard">
+            <p>Amount</p>
+            <input/>
+          </div>
+        </div>
+        <form method="post" th:action="@{/createOrders/save}">
+          <button type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

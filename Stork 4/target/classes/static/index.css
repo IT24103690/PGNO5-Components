@@ -1,0 +1,187 @@
+body {
+    background-color: #DBEAFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.fakeInput{
+    height: 40px;
+    width: 380px;
+    margin-top: 10px;
+    border-radius: 15px;
+    border: white;
+    background-color: white;
+    margin-top: -5px;
+}
+
+.navBar{
+    margin-right: auto;
+    margin-left: auto;
+    width: 1200px;
+    height: 50px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.Username {
+    background-color: #1C32A2;
+    color: white;
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 25px;
+    padding-top: 5px;
+    border-radius: 15px;
+}
+
+.Username button{
+    margin-top: -5px;
+    font-size: 25px;
+    width: 300px;
+    height: 44px;
+    border-radius: 10px;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+    padding-top: 8px;
+}
+
+button {
+    background-color: #F4EBE5;
+    height: 40px;
+    padding: 5px;
+    font-size: 17px;
+    min-width: 80px;
+    border-radius: 20px;
+    border: solid #F4EBE5 2px;
+    transition-duration: 0.4s;
+}
+
+button:hover{
+    border: solid 2px #A46F4B;
+}
+
+.activeButton {
+    border: solid #A46F4B 2px;
+    background-color: #FFFDFC;
+}
+
+.content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 90px;
+}
+
+.registerBox{
+    border: solid 4px;
+    border-radius: 40px;
+    width: 425px;
+    height: 580px;
+    margin-right: 50px;
+    padding-left: 20px;
+    padding-top: 0px;
+}
+
+h1{
+    margin-bottom: 5px;
+}
+
+.form{
+    display: flex;
+    flex-direction:column;
+    font-size: 20px;
+    margin-bottom: 70px;
+}
+
+input{
+    height: 40px;
+    width: 370px;
+    margin-top: 10px;
+    border-radius: 15px;
+    border: white;
+    padding-left: 10px;
+}
+
+select{
+    appearance: none;
+    height: 40px;
+    width: 380px;
+    margin-top: 10px;
+    border-radius: 15px;
+    border: white;
+    background-color: white;
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+input {
+    font-size: 20px;
+}
+
+label{
+    margin-top: 15px;
+}
+
+
+.radio{
+    margin-top: -5px;
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+}
+
+.radio p{
+    margin-bottom: 7px;
+}
+
+.infoBox{
+    border: solid 4px;
+    border-radius: 40px;
+    width: 700px;
+    height: 575px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+.infoBox input {
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+.infoBox button{
+    margin-left: 12px;
+    margin-top:15px;
+    transition-duration: 0.1s;
+}
+
+.infoBox button:hover{
+    border: solid 2px #A46F4B;
+}
+
+.cardCatalog{
+    height: 450px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.searchBox{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form{
+    appearance: none;
+}
