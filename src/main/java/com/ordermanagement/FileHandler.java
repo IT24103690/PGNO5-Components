@@ -21,7 +21,7 @@ public class FileHandler {
             System.out.println("Creating new orders.json at: " + file.getAbsolutePath());
             file.createNewFile();
             List<Order> initialOrders = new ArrayList<>();
-            initialOrders.add(new Order(1L, "John", "Laptop", false));
+            initialOrders.add(new Order(1L, "chanula", "Laptop", false));
             writeOrders(initialOrders);
         }
     }
